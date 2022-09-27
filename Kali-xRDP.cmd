@@ -1,17 +1,17 @@
 @ECHO OFF & NET SESSION >NUL 2>&1 
 IF %ERRORLEVEL% == 0 (ECHO Administrator check passed...) ELSE (ECHO You need to run this command with administrative rights.  Is User Account Control enabled? && pause && goto ENDSCRIPT)
 COLOR 1F
-SET GITORG=DesktopECHO
+SET GITORG=dream-knight
 SET GITPRJ=Kali-xRDP
 SET BRANCH=main
 SET BASE=https://github.com/%GITORG%/%GITPRJ%/raw/%BRANCH%
 SET RUNSTART=%date% @ %time:~0,5%
 
 REM ## Enable WSL if needed
-PowerShell.exe -Command "$WSL = Get-WindowsOptionalFeature -Online -FeatureName 'Microsoft-Windows-Subsystem-Linux' ; if ($WSL.State -eq 'Disabled') {Enable-WindowsOptionalFeature -FeatureName $WSL.FeatureName -Online}"
+##PowerShell.exe -Command "$WSL = Get-WindowsOptionalFeature -Online -FeatureName 'Microsoft-Windows-Subsystem-Linux' ; if ($WSL.State -eq 'Disabled') {Enable-WindowsOptionalFeature -FeatureName $WSL.FeatureName -Online}"
 
 REM ## Install Kali from AppStore if needed
-PowerShell.exe -Command "wsl -d kali-linux -e 'uname' > $env:TEMP\DistroTestAlive.TMP ; $alive = Get-Content $env:TEMP\DistroTestAlive.TMP ; IF ($Alive -ne 'Linux') { Start-BitsTransfer https://aka.ms/wsl-kali-linux-new -Destination $env:TEMP\Kali.AppX ; WSL.EXE --set-default-version 1 > $null ; Add-AppxPackage $env:TEMP\Kali.AppX ; Write-Host ; Write-Host 'Open Kali from Start Menu.' ; Write-Host 'When initialization completes' ; PAUSE ; Write-Host }"
+##PowerShell.exe -Command "wsl -d kali-linux -e 'uname' > $env:TEMP\DistroTestAlive.TMP ; $alive = Get-Content $env:TEMP\DistroTestAlive.TMP ; IF ($Alive -ne 'Linux') { Start-BitsTransfer https://aka.ms/wsl-kali-linux-new -Destination $env:TEMP\Kali.AppX ; WSL.EXE --set-default-version 1 > $null ; Add-AppxPackage $env:TEMP\Kali.AppX ; Write-Host ; Write-Host 'Open Kali from Start Menu.' ; Write-Host 'When initialization completes' ; PAUSE ; Write-Host }"
 
 REM ## Acquire LxRunOffline
 MKDIR %TEMP%\Kali-xRDP >NUL 2>&1 
